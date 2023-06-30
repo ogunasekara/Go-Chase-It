@@ -1,6 +1,6 @@
-<robot name="new_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="tutorial_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo"/>
+    <xacro:include filename="$(find my_robot)/urdf/tutorial_robot.gazebo"/>
 
     <link name="robot_footprint"></link>
 

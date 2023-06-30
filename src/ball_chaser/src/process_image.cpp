@@ -14,22 +14,28 @@ class ProcessImageNode
 
         void processImageCallback(const sensor_msgs::Image img)
         {
-            int white_pixel = 255;
-            int img_width = img.step;
+            // white pixel rgb values
+            std::tuple<int, int, int> white_pixel_rgb{255, 255, 255};
 
-            for (int i = 0; i < img.data.size(); i++)
+            int data_size = img.height * img.step;
+            int row_bytes = img.step;
+
+            for (int i = 0; i < data_size; i += 3)
             {
-                if (img.data[i] == white_pixel)
+                // construct the current pixel tuple
+                std::tuple<int, int, int> current_pixel_rgb{img.data[i], img.data[i+1], img.data[i+2]};
+                
+                if (current_pixel_rgb == white_pixel_rgb)
                 {
                     // determine drive behavior based on column of white pixel in image
-                    int pixel_col = i % img_width;
-                    if (pixel_col < (img_width / 3))
+                    int pixel_col = i % row_bytes;
+                    if (pixel_col < (row_bytes / 3))
                     {
                         // drive left
                         drive_robot(0.25, 0.5);
                         return;
                     } 
-                    else if (pixel_col < (2 * img_width / 3))
+                    else if (pixel_col < (2 * row_bytes / 3))
                     {
                         // drive forward
                         drive_robot(0.5, 0);

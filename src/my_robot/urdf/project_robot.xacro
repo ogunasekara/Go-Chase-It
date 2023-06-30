@@ -1,7 +1,7 @@
-<robot name="new_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="project_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- gazebo integration -->
-    <xacro:include filename="$(find my_robot)/urdf/new_robot.gazebo"/>
+    <xacro:include filename="$(find my_robot)/urdf/project_robot.gazebo"/>
 
     <!-- import colors -->
     <xacro:include filename="$(find my_robot)/urdf/materials.xacro"/>
@@ -12,14 +12,12 @@
             <origin xyz="${origin_xyz}" rpy="0 0 0"/> 
             <geometry>
                 <cylinder radius="0.2" length="0.05"/>
-                <!-- <box size="0.4 0.4 0.05"/> -->
             </geometry>
         </visual>
         <collision name="${name}_collision">
             <origin xyz="${origin_xyz}" rpy="0 0 0"/> 
             <geometry>
                 <cylinder radius="0.2" length="0.05"/>
-                <!-- <box size="0.4 0.4 0.05"/> -->
             </geometry>
         </collision>
     </xacro:macro>
@@ -49,7 +47,7 @@
         <collision name='${name}_collision'>
             <origin xyz="${origin_xyz}" rpy="0 0 0"/>
             <geometry>
-                <sphere radius="0.0745"/>
+                <sphere radius="0.0749"/>
             </geometry>
         </collision>
     </xacro:macro>
@@ -110,8 +108,7 @@
 
         <!-- chassis parts -->
         <xacro:chassis_part name="chassis_bottom" origin_xyz="0 0 0"/>
-        <xacro:chassis_part name="chassis_top" origin_xyz="0 0 0.2"/>
-        <!-- <xacro:chassis_part name="chassis" origin_xyz="0 0 0"/> -->
+        <xacro:chassis_part name="chassis_top" origin_xyz="0 0 0.1"/>
 
         <!-- standoffs -->
         <xacro:standoff_part name="standoff1" origin_xyz="0.1 0.1 0.05"/>
@@ -120,8 +117,8 @@
         <xacro:standoff_part name="standoff4" origin_xyz="-0.1 -0.1 0.05"/>
 
         <!-- casters -->
-        <xacro:caster_part name="back_caster" origin_xyz="0.125 0 -0.075"/>
-        <xacro:caster_part name="front_caster" origin_xyz="-0.125 0 -0.075"/>
+        <xacro:caster_part name="back_caster" origin_xyz="0.165 0 -0.075"/>
+        <xacro:caster_part name="front_caster" origin_xyz="-0.165 0 -0.075"/>
     </link>
 
     <!-- wheel links and joints -->
@@ -175,7 +172,7 @@
     </link>
 
     <joint type="fixed" name="camera_joint">
-        <origin xyz="0.25 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0.225 0 0.1" rpy="0 0 0"/>
         <child link="camera"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -209,7 +206,7 @@
     </link>
 
     <joint type="fixed" name="hokuyo_joint">
-        <origin xyz="0.15 0 0.15" rpy="0 0 0"/>
+        <origin xyz="0.15 0 0.2" rpy="0 0 0"/>
         <child link="hokuyo"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0"/>
