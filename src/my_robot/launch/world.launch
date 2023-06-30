@@ -5,13 +5,13 @@
     <arg name="z" default="0.1"/>
     <arg name="roll" default="0"/>
     <arg name="pitch" default="0"/>
-    <arg name="yaw" default="-3.14"/>
+    <arg name="yaw" default="1.571"/>
 
     <!-- Convert robot description from xacro to urdf -->
     <include file="$(find my_robot)/launch/robot_description.launch"/>
 
     <!-- World File -->
-    <arg name="world_file" default="$(find my_robot)/worlds/oshadha.world"/>
+    <arg name="world_file" default="$(find my_robot)/worlds/project.world"/>
 
     <!-- Launch Gazebo World -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
